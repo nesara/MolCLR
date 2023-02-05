@@ -15,6 +15,7 @@ from sklearn.metrics import roc_auc_score, mean_squared_error, mean_absolute_err
 
 from dataset.dataset_test import MolTestDatasetWrapper
 
+main_path="/home/nesara/Project_CLESS/Dummy/MolCLR/"
 
 apex_support = False
 try:
@@ -327,7 +328,7 @@ def main(config):
 
 
 if __name__ == "__main__":
-    config = yaml.load(open("config_finetune.yaml", "r"), Loader=yaml.FullLoader)
+    config = yaml.load(open(main_path+"config_finetune.yaml", "r"), Loader=yaml.FullLoader)
 
     if config['task_name'] == 'BBBP':
         config['dataset']['task'] = 'classification'
@@ -415,7 +416,7 @@ if __name__ == "__main__":
     
     elif config["task_name"] == 'qm9':
         config['dataset']['task'] = 'regression'
-        config['dataset']['data_path'] = 'data/qm9/qm9.csv'
+        config['dataset']['data_path'] = main_path+'data/qm9/qm9.csv'
         target_list = ['mu', 'alpha', 'homo', 'lumo', 'gap', 'r2', 'zpve', 'cv']
 
     else:
