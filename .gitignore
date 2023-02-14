@@ -7,3 +7,6 @@ __pycache__
 data/
 finetune/
 experiments/
+data_pygeo/
+exp_tensorboard/
+

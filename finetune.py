@@ -31,7 +31,7 @@ except:
 def _save_config_file(model_checkpoints_folder):
     if not os.path.exists(model_checkpoints_folder):
         os.makedirs(model_checkpoints_folder)
-        shutil.copy('./config_finetune.yaml', os.path.join(model_checkpoints_folder, 'config_finetune.yaml'))
+        shutil.copy(main_path+'config_finetune.yaml', os.path.join(model_checkpoints_folder, 'config_finetune.yaml'))
 
 
 class Normalizer(object):
@@ -105,7 +105,7 @@ class FineTune(object):
         self.normalizer = None
         if self.config["task_name"] in ['qm7', 'qm9']:
             labels = []
-            for d, __ in train_loader:
+            for d in train_loader:
                 labels.append(d.y)
             labels = torch.cat(labels)
             self.normalizer = Normalizer(labels)
@@ -192,7 +192,7 @@ class FineTune(object):
 
     def _load_pre_trained_weights(self, model):
         try:
-            checkpoints_folder = os.path.join('./ckpt', self.config['fine_tune_from'], 'checkpoints')
+            checkpoints_folder = os.path.join(main_path+'ckpt', self.config['fine_tune_from'], 'checkpoints')
             state_dict = torch.load(os.path.join(checkpoints_folder, 'model.pth'), map_location=self.device)
             # model.load_state_dict(state_dict)
             model.load_my_state_dict(state_dict)
