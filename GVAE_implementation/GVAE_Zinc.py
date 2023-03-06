@@ -3,7 +3,7 @@ import torch
 os.environ['TORCH'] = torch.__version__
 print(torch.__version__)
 from torch.utils.tensorboard import SummaryWriter
-from torch_geometric.datasets import ZINC
+from torch_geometric.datasets import ZINC,QM9
 import torch_geometric.transforms as T
 from torch_geometric.nn import GCNConv
 from torch_geometric.utils import train_test_split_edges
@@ -21,9 +21,7 @@ import ast
 
 import pandas as pd
 #FIXME: This is pytorch geometric data
-train_dataset = ZINC("/home/nesara/Project_CLESS/Dummy/MolCLR/data_pygeo/data_pygeo_ZINC",
-                     subset=True,
-                     split='train')
+train_dataset = QM9("/home/nesara/Project_CLESS/Dummy/MolCLR/data_pygeo/data_pygeo_QM9")
 test_dataset= ZINC("/home/nesara/Project_CLESS/Dummy/MolCLR/data_pygeo/data_pygeo_ZINC",
                    subset=True,
                    split="test",

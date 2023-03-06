@@ -178,10 +178,10 @@ class MolCLR(object):
 
 
 def main():
-    config = yaml.load(open("config.yaml", "r"), Loader=yaml.FullLoader)
+    config = yaml.load(open("MolCLR/config.yaml", "r"), Loader=yaml.FullLoader)
     print(config)
 
-    if config['aug'] == 'node':
+    if config['aug'] =='node':
         from dataset.dataset import MoleculeDatasetWrapper
     elif config['aug'] == 'subgraph':
         from dataset.dataset_subgraph import MoleculeDatasetWrapper
